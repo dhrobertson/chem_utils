@@ -11,6 +11,8 @@ import pprint
 import logging
 from utils import core_utils
 from rdkit import Chem
+from rdkit.Chem.Draw import rdMolDraw2D
+from rdkit.Chem import rdDepictor
 from rdkit.Chem.Fingerprints import FingerprintMols
 from rdkit import DataStructs
 logger = logging.getLogger()
@@ -28,6 +30,7 @@ class Molecules:
     # adds as either a single value or list
     # it can be a tuple of (smi, name) or just
     def addSmiles(self, smiles):
+        rdDepictor.SetPreferCoordGen(True)
         if type(smiles) != type(list()):
             smiles = [smiles]
         errors = list()
@@ -46,11 +49,15 @@ class Molecules:
                 c_smiles = Chem.CanonSmiles(smiles)
                 cs_mol   = Chem.MolFromSmiles(c_smiles)
                 fp       = FingerprintMols.FingerprintMol(cs_mol)
+                d2d      = rdMolDraw2D.MolDraw2DSVG(600,600)
+                d2d.DrawMolecule(cs_mol)
+                d2d.FinishDrawing()
                 mol = {
                     "name" : name,
                     "smiles" : c_smiles,
                     "mol" : cs_mol,
-                    "fp"  : fp
+                    "fp"  : fp,
+                    "svg" : d2d.GetDrawingText()
                 }
                 self.molecule_list.append(mol)
             except Exception as e:
