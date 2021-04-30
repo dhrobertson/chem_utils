@@ -1,0 +1,4 @@
+id,value,type
+1,20,integer
+2,"text, test",string
+3,2.54,float

@@ -1,0 +1,17 @@
+[
+  {
+    "id" : 1,
+    "value" : 20,
+    "type" : "integer"
+  },
+  {
+    "id" : 2,
+    "value" : "text, test",
+    "type" : "string"
+  },
+  {
+    "id" : 3,
+    "value" : 2.54,
+    "type" : "float"
+  }
+]
