@@ -9,7 +9,7 @@ Class for handling sets of molecules -- wrapper class for RDKit
 """
 import pprint
 import logging
-from utils import core_utils
+from chem_utils.utils import core_utils
 from rdkit import Chem
 from rdkit.Chem.Draw import rdMolDraw2D
 from rdkit.Chem import rdDepictor
