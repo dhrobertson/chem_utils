@@ -15,6 +15,8 @@ import logging
 import csv
 import pprint
 
+# TODO get rid of dependency on chembl_webresource_client so that can do raw requests and do our own cache consistent across all APIs
+
 # Python modules used for API access...
 from chembl_webresource_client.new_client import new_client
 #
