@@ -5,20 +5,16 @@ Author: Daniel H Robertson
 
 Part of the IBRI cheminformatics system
 
-Specific utilities for working with chembl data
+Specific utilities for working with chembl data directly through the chembl api
 """
 from pathlib import Path
-import unittest
+import requests
+import requests_cache
+import json
 import os
 import sys
 import logging
 import csv
-import pprint
-
-# TODO get rid of dependency on chembl_webresource_client so that can do raw requests and do our own cache consistent across all APIs
-
-# Python modules used for API access...
-from chembl_webresource_client.new_client import new_client
 #
 # define helper files
 #
@@ -31,7 +27,12 @@ logger.level = logging.INFO
 stream_handler = logging.StreamHandler(sys.stderr)
 logger.addHandler(stream_handler)
 
+def get_chembl_client():
+    return new_client
+
 def read_alias_map():
+    # TODO Need to find a way to cache this so only read once per instantiated instance
+    """ read in the alias map to be able to get the mapping of gene name to chembl_id """
     alias_map = dict()
     if not os.path.isfile(_g2c_map_file_):
         logger.critical("Unable to locate target map_file \"" + _g2c_map_file_ +"\" ... exiting")
@@ -51,6 +52,7 @@ def read_alias_map():
     return alias_map
 
 def get_chembl_ids_for_targets(genes):
+    """ get the chembl_ids for a gene name or alias -- from the configuration file """
 
     gene_list = list()
     if type(genes) == type(list()):
@@ -59,8 +61,6 @@ def get_chembl_ids_for_targets(genes):
         gene_list.append(genes)
 
     chembl_list = list()
-
-    #print(pprint.pformat(gene_list))
 
     alias_map = read_alias_map()
     for gene in gene_list:
@@ -75,77 +75,74 @@ def get_chembl_ids_for_targets(genes):
         return chembl_list[0]['chembl_id']
 
 def get_bioactivities_for_molecules(chembl_ids):
-    mol_list = list()
-    if type(chembl_ids) == type(list()):
-        mol_list = chembl_ids
-    else:
-        mol_list.append(chembl_ids)
+    """ get the activities for a molecule -- input either single item or a list """
 
-    record_list = list()
-    for mol in mol_list:
-        records = new_client.activity.filter(molecule_chembl_id=mol)
-        for record in records:
-            record_list.append(record)
+    mol_list = chembl_ids
+    if type(mol_list) != type(list()):
+        mol_list = [chembl_ids]
 
-    return record_list
+    results = send_api_request("activity", { 'molecule_chembl_id__in' : ','.join(mol_list)})
+
+    return results['activities']
 
 def get_bioactivities_for_targets(chembl_ids):
-    tgt_list = list()
-    if type(chembl_ids) == type(list()):
-        tgt_list = chembl_ids
-    else:
-        tgt_list.append(chembl_ids)
+    """ get the activities for a target -- input either single item or a list """
 
-    record_list = list()
-    for tgt in tgt_list:
-        records = new_client.activity.filter(target_chembl_id=tgt)
-        for record in records:
-            record_list.append(record)
+    tgt_list = chembl_ids
+    if type(tgt_list) != type(list()):
+        tgt_list = [chembl_ids]
 
-    return record_list
+    results = send_api_request("activity", { 'target_chembl_id__in' : ','.join(tgt_list)})
 
-def get_molecule_details(chembl_ids):
-    mol_list = list()
-    if type(chembl_ids) == type(list()):
-        mol_list = chembl_ids
-    else:
-        mol_list.append(chembl_ids)
-
-    records = new_client.molecule.get(mol_list)
-    if len(records) != len(mol_list):
-        logger.error("ERROR: Some ids not molecules?: returned {} molecules for {} ids".format(len(records),len(mol_list)))
-
-    if type(chembl_ids) == type(list()):
-        return records
-    else:
-        if len(records) == 1:
-            return records[0]
-        return {}
+    return results['activities']
 
 def get_assay_details(chembl_ids):
-    assay_list = list()
-    if type(chembl_ids) == type(list()):
-        assay_list = chembl_ids
-    else:
-        assay_list.append(chembl_ids)
-
-    records = new_client.assay.get(assay_list)
+    """ get the details for an assay -- input either single item or a list """
 
     if type(chembl_ids) == type(list()):
-        return records
-    else:
-        return records[0]
+        results = send_api_request("assay", { 'assay_chembl_id__in' : ','.join(chembl_ids)})
+        if len(results['assays']) != len(chembl_ids):
+            logger.error("ERROR: Some ids not assays?: returned {} assays for {} ids".format(
+                len(results['assays']),len(chembl_ids)))
+        return results['assays']
+
+    # single molecule request
+    return send_api_request("assay/" + chembl_ids, {})
+    return results
+
+def get_molecule_details(chembl_ids):
+    """ get the details for a molecule -- input either single item or a list """
+
+    # list of molecule_chembl_ids
+    if type(chembl_ids) == type(list()):
+        records = list()
+        results = send_api_request("molecule", { 'molecule_chembl_id__in' : ','.join(chembl_ids)})
+        if len(results['molecules']) != len(chembl_ids):
+            logger.error("ERROR: Some ids not molecules?: returned {} molecules for {} ids".format(
+                len(results['molecules']),len(chembl_ids)))
+        return results['molecules']
+
+    # single molecule request
+    return send_api_request("molecule/" + chembl_ids, {})
+    return results
+
 
 def get_target_details(chembl_ids):
-    tgt_list = list()
-    if type(chembl_ids) == type(list()):
-        tgt_list = chembl_ids
-    else:
-        tgt_list.append(chembl_ids)
+    """ get the details for a target -- input either single item or a list """
 
-    records = new_client.target.get(tgt_list)
+    records = list()
+    if type(chembl_ids) == type(list()):
+        results = send_api_request("target", { 'target_chembl_id__in' : ','.join(chembl_ids)})
+        if len(results['targets']) != len(chembl_ids):
+            logger.error("ERROR: Some ids not targets?: returned {} targets for {} ids".format(
+                len(results['targets']),len(chembl_ids)))
+        records = results['targets']
+    else:
+        results = send_api_request("target/" + chembl_ids, {})
+        records.append(results)
+
     if not len(records):
-        return None
+        return []
 
     # bring up the GENE_SYMBOL FROM the target_components
     # TODO: Add HUGO Gene Name
@@ -167,3 +164,56 @@ def get_target_details(chembl_ids):
         return new_records
     else:
         return new_records[0]
+
+### key method to do the api request for chembl
+### Reference: https://www.ebi.ac.uk/chembl/api/data/docs
+
+def send_api_request(type, params, cache="chembl_api"):
+    """
+        function to send the api request to ChEMBL API
+        sends the query request and return json
+        captures request error
+        reference: https://www.ebi.ac.uk/chembl/api/data/docs
+    """
+    _DEBUG_ = 0
+    url = "https://www.ebi.ac.uk/chembl/api/data/" + type
+    params["format"] = "json"
+    logger.info('Sending API request to {url}'.format(url=url))
+
+    try:
+        response = requests.get(
+            url=url,
+            params=params
+        )
+        logger.info('Response HTTP Status Code: {status_code}'.format(
+            status_code=response.status_code))
+        logger.debug( 'Response HTTP Response Body: {content}'.format(
+            content=response.text))
+        # capture 400 errors
+        if response.status_code == 404:
+            logger.error("Request Error: Status 404 - page not found")
+            return {}
+
+        if response.status_code == 400:
+            # check for an html response
+            if 'html' in response.text:
+                soup = BeautifulSoup(response.text, "html.parser")
+                error = soup.find('pre').text
+                logger.error("Request Error: {} response error: {}".format(
+                    response.status_code,
+                    error
+                ))
+                return {}
+            # assume json coded errors
+            error_codes = json.loads(response.text)
+            for error in error_codes['errors']:
+                logger.error("Request Error: {} {} {}".format(error['extensions']['code'], error['locations'], error['message']))
+            return {}
+
+        # 200 correct response
+        content = json.loads(response.text)
+        return content
+
+    except requests.exceptions.RequestException:
+        logger.error('HTTP Request failed')
+        return {}
