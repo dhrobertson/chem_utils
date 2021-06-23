@@ -13,6 +13,9 @@ import json
 import logging
 
 # setup requests_cache
+# took test_chembl_api from 21.02s => 0.18s
+# took test_chembl_utils from 7.38s => 0.29s
+# took full suite from 152s => 2.92s
 requests_cache.install_cache()
 
 # create logger and set logger level
