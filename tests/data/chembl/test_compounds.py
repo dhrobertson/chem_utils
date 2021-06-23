@@ -23,35 +23,27 @@ def test_get_by_targets():
     # CHEMBL2331064 (SHIP2) -  61 compounds
     # SHIP1 & SHIP2 - 64
     """ test getting the active compounds from target_chembl_id """
-    logger = logging.getLogger()
-    org_level = logger.getEffectiveLevel()
-    logger.level = logging.ERROR
 
     cpds = compounds.get_by_targets(['CHEMBL1781870'])
     assert len(cpds) == 16
-    #print(pprint.pformat(cpds))
     cpds_2 = compounds.get_by_targets(['CHEMBL1781870','CHEMBL2331064'])
     assert len(cpds_2) == 71
-    logger.level = org_level
-    #print(pprint.pformat(cpds_2))
 
 def test_get_details():
     # 2021-02-03
     # CHEMBL207881 (GW-9508) - 90 bioactivities
     # CHEMBL203297 () - 2 bioactivities
     """ test getting the active compounds from molecule_chembl_id """
-    logger = logging.getLogger()
-    org_level = logger.getEffectiveLevel()
-    logger.level = logging.ERROR
 
     cpd_error = compounds.get_details('CHEMBL1781870')
-    assert type(cpd_error) == type(dict())
-    assert 'molecule_chembl_id' not in cpd_error
+    assert type(cpd_error) == type(list())
+    assert len(cpd_error) == 0
 
-    cpd_dict = compounds.get_details('CHEMBL207881')
-    assert type(cpd_dict) == type(dict())
-    assert 'molecule_chembl_id' in cpd_dict
-    assert cpd_dict['molecule_chembl_id'] == 'CHEMBL207881'
+    cpd = compounds.get_details('CHEMBL207881')
+    assert type(cpd) == type(list())
+    assert len(cpd) == 1
+    assert 'molecule_chembl_id' in cpd[0]
+    assert cpd[0]['molecule_chembl_id'] == 'CHEMBL207881'
 
     cpd_list = compounds.get_details(['CHEMBL207881'])
     assert type(cpd_list) == type(list())
@@ -63,18 +55,12 @@ def test_get_details():
     assert type(cpds_list) == type(list())
     assert len(cpds_list) == 2
 
-    logger.level = org_level
-    print(pprint.pformat(cpds_list))
-
 
 def test_get_sdf():
     """ test the creating of an sdf from chembl_ids """
-    org_level = logger.getEffectiveLevel()
-    logger.level = logging.INFO
 
     sdf_1 = compounds.get_sdf(['CHEMBL207881'])
     assert 'CHEMBL207881' in sdf_1
-    #print(pprint.pformat(sdf_1))
 
     sdf_2 = compounds.get_sdf(['CHEMBL207881','CHEMBL203297'])
     assert 'CHEMBL207881' in sdf_2
@@ -90,8 +76,6 @@ def test_get_sdf():
 
 def test_get_smi():
     """ test the creating of an sdf from chembl_ids """
-    org_level = logger.getEffectiveLevel()
-    logger.level = logging.INFO
 
     smi_1 = compounds.get_smi(['CHEMBL207881'])
     assert 'CHEMBL207881' in smi_1
