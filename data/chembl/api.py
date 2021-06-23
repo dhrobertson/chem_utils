@@ -12,6 +12,9 @@ import requests_cache
 import json
 import logging
 
+# setup requests_cache
+requests_cache.install_cache()
+
 # create logger and set logger level
 logger = logging.getLogger()
 #logger.level = logging.INFO
@@ -19,7 +22,7 @@ logger = logging.getLogger()
 ### key method to do the api request for chembl
 ### Reference: https://www.ebi.ac.uk/chembl/api/data/docs
 
-def send_api_request(api_request, params, cache="chembl_api", level=0, _results_list=None):
+def send_api_request(api_request, params, level=0, _results_list=None):
     """
         function to send the api request to ChEMBL API
         sends the query request and return json

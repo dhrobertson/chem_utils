@@ -3,6 +3,9 @@ __pycache__/
 *.py[cod]
 *$py.class
 
+# request_cache
+http_cache.sqlite
+
 # C extensions
 *.so
 
