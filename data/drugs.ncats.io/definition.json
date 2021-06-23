@@ -1,0 +1,209 @@
+[
+  {
+    "description": "Resource for handling of GInAS references",
+    "name": "references",
+    "href": "https://drugs.ncats.io/api/v1/references",
+    "kind": "ix.ginas.models.v1.Reference",
+    "supportedOperations": [
+      "search",
+      "get",
+      "edits",
+      "count",
+      "create",
+      "update",
+      "page"
+    ]
+  },
+  {
+    "description": "Edit history of changes to entities",
+    "name": "edits",
+    "href": "https://drugs.ncats.io/api/v1/edits",
+    "kind": "ix.core.models.Edit",
+    "supportedOperations": [
+      "search",
+      "page"
+    ]
+  },
+  {
+    "description": "Resource for handling processing jobs",
+    "name": "jobs",
+    "href": "https://drugs.ncats.io/api/v1/jobs",
+    "kind": "ix.core.models.ProcessingJob",
+    "supportedOperations": [
+      "search",
+      "field",
+      "get",
+      "count",
+      "create",
+      "page"
+    ]
+  },
+  {
+    "description": "Resource for handling of GInAS codes",
+    "name": "codes",
+    "href": "https://drugs.ncats.io/api/v1/codes",
+    "kind": "ix.ginas.models.v1.Code",
+    "supportedOperations": [
+      "search",
+      "field",
+      "get",
+      "edits",
+      "count",
+      "page"
+    ]
+  },
+  {
+    "description": "Resource for handling Values",
+    "name": "values",
+    "href": "https://drugs.ncats.io/api/v1/values",
+    "kind": "ix.core.models.Value",
+    "supportedOperations": [
+      "search",
+      "field",
+      "get",
+      "edits",
+      "count",
+      "update",
+      "page"
+    ]
+  },
+  {
+    "description": "Resource for handling payload",
+    "name": "payload",
+    "href": "https://drugs.ncats.io/api/v1/payload",
+    "kind": "ix.core.models.Payload",
+    "supportedOperations": [
+      "search",
+      "field",
+      "get",
+      "count",
+      "create",
+      "page"
+    ]
+  },
+  {
+    "description": "Cross references are handled by this resource. An XRef is also be used as an indirect way (i.e., pointer) to reference a particular entity.",
+    "name": "xrefs",
+    "href": "https://drugs.ncats.io/api/v1/xrefs",
+    "kind": "ix.core.models.XRef",
+    "supportedOperations": [
+      "search",
+      "field",
+      "get",
+      "edits",
+      "count",
+      "create",
+      "update",
+      "page"
+    ]
+  },
+  {
+    "description": "Resource for scheduled tasks",
+    "name": "scheduledjobs",
+    "href": "https://drugs.ncats.io/api/v1/scheduledjobs",
+    "kind": "ix.core.plugins.SchedulerPlugin$ScheduledTask",
+    "supportedOperations": [
+      "field",
+      "stream",
+      "get",
+      "count",
+      "page"
+    ]
+  },
+  {
+    "description": "Resource for handling chemical structures",
+    "name": "structures",
+    "href": "https://drugs.ncats.io/api/v1/structures",
+    "kind": "ix.core.models.Structure",
+    "supportedOperations": [
+      "search",
+      "field",
+      "get",
+      "edits",
+      "count",
+      "page"
+    ]
+  },
+  {
+    "description": "Resource for handling of GInAS substances",
+    "name": "substances",
+    "href": "https://drugs.ncats.io/api/v1/substances",
+    "kind": "ix.ginas.models.v1.Substance",
+    "supportedOperations": [
+      "resolve",
+      "sequenceSearch",
+      "count",
+      "structureSearch",
+      "update",
+      "patch",
+      "updateEntity",
+      "search",
+      "field",
+      "stream",
+      "approve",
+      "get",
+      "edits",
+      "create",
+      "page",
+      "validate"
+    ]
+  },
+  {
+    "description": "Resource for handling of CV used in GInAS",
+    "name": "vocabularies",
+    "href": "https://drugs.ncats.io/api/v1/vocabularies",
+    "kind": "ix.ginas.models.v1.ControlledVocabulary",
+    "supportedOperations": [
+      "updateEntity",
+      "search",
+      "field",
+      "get",
+      "edits",
+      "count",
+      "create",
+      "update",
+      "page"
+    ]
+  },
+  {
+    "description": "This resource is for handling of keywords, which is a specific resource of Value.",
+    "name": "keywords",
+    "href": "https://drugs.ncats.io/api/v1/keywords",
+    "kind": "ix.core.models.Keyword",
+    "supportedOperations": [
+      "search",
+      "field",
+      "get",
+      "edits",
+      "count",
+      "create",
+      "update",
+      "page"
+    ]
+  },
+  {
+    "description": "Backup of serialized form of entities",
+    "name": "backups",
+    "href": "https://drugs.ncats.io/api/v1/backups",
+    "kind": "ix.core.models.BackupEntity",
+    "supportedOperations": [
+      "search",
+      "field",
+      "page"
+    ]
+  },
+  {
+    "description": "Resource for handling of GInAS names",
+    "name": "names",
+    "href": "https://drugs.ncats.io/api/v1/names",
+    "kind": "ix.ginas.models.v1.Name",
+    "supportedOperations": [
+      "search",
+      "field",
+      "get",
+      "edits",
+      "count",
+      "page"
+    ]
+  }
+]
