@@ -1,3 +1,5 @@
 requests
 pytest
 chembl_webresource_client
+rdkit
+bs4
