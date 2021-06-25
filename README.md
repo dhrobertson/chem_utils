@@ -13,6 +13,7 @@ These test should have close to full coverage across all the various objects, me
     python3 -m pytest tests
 
 ## Dependencies
+RDkit: pip install rdkit-pypi 
 
 ### Python Modules
   requests
