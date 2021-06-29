@@ -12,7 +12,7 @@ import sys
 import logging
 
 logger = logging.getLogger()
-logger.level = logging.INFO
+logger.level = logging.DEBUG
 
 _test_target_id = 'CHEMBL2331064'
 _test_target_id_list = ['CHEMBL1781870', 'CHEMBL2331064']
@@ -40,6 +40,7 @@ def test_api_interface():
     assert len(results_tgts['targets']) == 2
     for tgt in results_tgts['targets']:
         assert (tgt['target_chembl_id'] in _test_target_id_list)
+    #assert True == False
 
 # test the interface for when need multiple calls due to api limit
 def test_api_iteration():
