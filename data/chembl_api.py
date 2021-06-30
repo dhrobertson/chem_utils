@@ -95,7 +95,7 @@ def get_bioactivities_for_molecules(chembl_ids):
     if type(mol_list) != type(list()):
         mol_list = [chembl_ids]
 
-    results = send_api_request("activity", { 'molecule_chembl_id__in' : ','.join(mol_list)})
+    results = send_api_request("activity", { 'molecule_chembl_id__in' : ','.join(mol_list), 'limit' : 250})
 
     if 'activities' not in results:
         return []
@@ -109,7 +109,7 @@ def get_bioactivities_for_targets(chembl_ids):
     if type(tgt_list) != type(list()):
         tgt_list = [chembl_ids]
 
-    results = send_api_request("activity", { 'target_chembl_id__in' : ','.join(tgt_list)})
+    results = send_api_request("activity", { 'target_chembl_id__in' : ','.join(tgt_list), 'limit' : 250})
     if 'activities' not in results:
         return []
 
