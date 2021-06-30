@@ -69,7 +69,7 @@ def send_api_request(api_request):
     types = ['symbol', 'alias_symbol']
     query_type = api_request.split('/')[0]
 
-    logger.debug('api_request: {} query_type: {}'.format(api_request, query_type))
+    logger.info('HUGO_API: api_request: {} query_type: {}'.format(api_request, query_type))
 
     if query_type not in types:
         logger.error("api request of type \"{}\" not in allowed list: {}".format(query_type, types))
@@ -87,7 +87,7 @@ def send_api_request(api_request):
                 "Content-Type": "multipart/form-data; charset=utf-8; boundary=__X_PAW_BOUNDARY__",
             },
         )
-        logger.info('Response HTTP Status Code: {status_code}'.format(
+        logger.info('HUGO_API: Response HTTP Status Code: {status_code}'.format(
             status_code=response.status_code))
         logger.debug( 'Response HTTP Response Body: {content}'.format(
             content=response.text))

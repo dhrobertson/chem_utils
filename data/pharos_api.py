@@ -67,6 +67,7 @@ def send_api_request(request):
     # Pharos Target Info
     # POST https://pharos-api.ncats.io/graphql
     encoded_data = json.dumps(request)
+    logger.info('PHAROS_API: request: {}'.format(request))
 
     try:
         response = requests.post(
@@ -76,7 +77,7 @@ def send_api_request(request):
             },
             data=encoded_data
         )
-        logger.info('Response HTTP Status Code: {status_code}'.format(
+        logger.info('PHAROS_API: Response HTTP Status Code: {status_code}'.format(
             status_code=response.status_code))
 
         # capture 400 error
