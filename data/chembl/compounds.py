@@ -9,7 +9,7 @@ Specific utilities for working with chembl data
 """
 import logging
 from rdkit import Chem
-from data.chembl import utils
+from . import utils
 
 logger = logging.getLogger()
 

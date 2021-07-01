@@ -12,8 +12,9 @@ import argparse
 import logging
 import pprint
 import json
-from data.chembl import get_assay_results
-from utils import core_utils
+import chem_utils
+from chem_utils.data.chembl import get_assay_results
+from chem_utils.utils import core_utils
 
 #TODO: add flag for verbose
 #TODO: add flag to switch between getting results from molecules vs targets

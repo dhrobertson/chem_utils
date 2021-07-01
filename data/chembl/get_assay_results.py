@@ -8,7 +8,7 @@ Part of the IBRI cheminformatics system
 Specific utility functions for returning assay results
 """
 import pprint
-from data import chembl_api
+from .. import chembl_api
 
 def by_molecules(molecule_chembl_ids):
     """ retrieve the assay results by molecule_chembl_ids """
