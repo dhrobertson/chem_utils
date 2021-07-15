@@ -21,6 +21,9 @@ _test_molecule_id = 'CHEMBL3629617'
 _test_molecule_id_list = ['CHEMBL3629617','CHEMBL1974235']
 _test_assay_id = 'CHEMBL4274857'
 _test_assay_id_list = ['CHEMBL4274857','CHEMBL1785363']
+_test_assay_id_list_lg = ['CHEMBL904416', 'CHEMBL904417', 'CHEMBL939816', 'CHEMBL991464', 'CHEMBL991465',
+                          'CHEMBL1052162', 'CHEMBL1052166', 'CHEMBL1226577', 'CHEMBL1226583', 'CHEMBL1226716',
+                          'CHEMBL1249424', 'CHEMBL1249425', 'CHEMBL1249426', 'CHEMBL1249427', 'CHEMBL1249428' ]
 _test_accession_id = 'Q13936'
 _test_accession_id_list = ['Q13936', 'P07948']
 
@@ -77,25 +80,37 @@ def test_get_molecule_details():
     for mol in molecules:
         assert (mol['molecule_chembl_id'] in _test_molecule_id_list)
 
-
 def test_get_assay_details():
     """ test the functions to get the details for a assay identified by assay_chembl_id """
+    logger.level = logging.DEBUG
     # test for a single assay
     assay = chembl_api.get_assay_details(_test_assay_id)
-    assert type(assay) == type(list())
-    assert len(assay) == 1
-    assert assay[0]['assay_chembl_id'] == _test_assay_id
-    assert assay[0]['target_chembl_id'] == 'CHEMBL2331064'
+    assert type(assay) != type(list())
+    assert assay['assay_chembl_id'] == _test_assay_id
+    assert assay['target_chembl_id'] == 'CHEMBL2331064'
+    assert assay['results_count'] == 51
 
     # test for a list of assays
+    assert type(_test_assay_id_list) == type(list())
+    assert len(_test_assay_id_list) == 2
     assay_list = chembl_api.get_assay_details(_test_assay_id_list)
+    assert type(_test_assay_id_list) == type(list())
+    assert len(_test_assay_id_list) == 2
     assert type(assay_list) == type(list())
     assert len(assay_list) == 2
+
     # TODO need to do this test so independent on order
+    print(assay_list)
     assert assay_list[1]['assay_chembl_id'] == _test_assay_id_list[0]
     assert assay_list[1]['target_chembl_id'] == 'CHEMBL2331064'
     assert assay_list[0]['assay_chembl_id'] == _test_assay_id_list[1]
     assert assay_list[0]['target_chembl_id'] == 'CHEMBL1781870'
+
+    # try a large list
+    # test for a list of assays
+    assay_list_lg = chembl_api.get_assay_details(_test_assay_id_list_lg, chunk_size=5)
+    assert type(assay_list_lg) == type(list())
+    assert len(assay_list_lg) == 15
 
 def test_get_chembl_ids_for_targets():
     """ test getting the target_chembl_id from gene name """
@@ -107,6 +122,16 @@ def test_get_chembl_ids_for_targets():
     assert len(cid_list) == 4
     assert cid_list[1]['chembl_id'] == 'CHEMBL2331064'
     assert cid_list[2]['chembl_id'] == ''
+
+def test_get_assays_for_targets():
+    """ test getting the bioactivities for target identified by target_chembl_id """
+    records = chembl_api.get_assays_for_targets(_test_target_id)
+    assert type(records) == type(list())
+    assert len(records) == 3
+    records_2 = chembl_api.get_assays_for_targets(_test_target_id_list)
+    assert type(records_2) == type(dict())
+    assert len(records_2[_test_target_id_list[0]]) == 3
+    assert len(records_2[_test_target_id_list[1]]) == 18
 
 def test_get_bioactivities_for_targets():
     """ test getting the bioactivities for target identified by target_chembl_id """
@@ -151,3 +176,10 @@ def test_api_iteration():
     results = chembl_api.send_api_request("activity", { 'target_chembl_id__in' : ','.join(_test_target_id_list)})
     logger.debug("{} {} Results: {} Type: {}".format(_test_name, "MULTIPLE TARGETS", type(results), results))
     assert len(results['activities']) == 153
+
+# test the interface for when need multiple calls due to api limit
+def test_api_count():
+    _test_name = 'test_api_count'
+    results = chembl_api.send_api_request("activity", { 'target_chembl_id__in' : ','.join(_test_target_id_list)}, return_count=True)
+    logger.debug("{} {} Results: {} Type: {}".format(_test_name, "MULTIPLE TARGETS -COUNTS", type(results), results))
+    assert results == 153

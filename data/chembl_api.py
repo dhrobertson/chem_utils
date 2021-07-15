@@ -1,5 +1,5 @@
 """
-utils.py
+chembl_api.py
 ------------
 Author: Daniel H Robertson
 
@@ -11,6 +11,7 @@ from pathlib import Path
 import requests
 import requests_cache
 import json
+from bs4 import BeautifulSoup
 import os
 import sys
 import logging
@@ -22,9 +23,6 @@ _g2c_map_file_ = Path(__file__).parent / 'chembl_data/gene2chembl_id.csv'
 
 # create logger and set logger level
 logger = logging.getLogger()
-
-def get_chembl_client():
-    return new_client
 
 def read_alias_map():
     # TODO Need to find a way to cache this so only read once per instantiated instance
@@ -88,6 +86,21 @@ def find_target_ids_by_accession(accessions):
 
     return results
 
+def get_bioactivities_counts_for_assays(chembl_ids):
+    """ get the count of the activities for an assay -- input either single item or a list """
+
+    if type(chembl_ids) != type(list()):
+        chembl_ids = [chembl_ids]
+
+    for id in chembl_ids:
+
+        results = send_api_request("activity", { 'assay_chembl_id__in' : ','.join(mol_list), 'limit' : 250}, True)
+
+    if 'activities' not in results:
+        return []
+
+    return results['activities']
+
 def get_bioactivities_for_molecules(chembl_ids):
     """ get the activities for a molecule -- input either single item or a list """
 
@@ -102,6 +115,34 @@ def get_bioactivities_for_molecules(chembl_ids):
 
     return results['activities']
 
+def get_assays_for_targets(chembl_ids):
+    """ get the assays for a target -- input either single item or a list """
+
+    not_list = False
+    if type(chembl_ids) != type(list()):
+        not_list = True
+        chembl_ids = [chembl_ids]
+
+    api_results = send_api_request("assay", { 'target_chembl_id__in' : ','.join(chembl_ids), 'limit' : 250})
+    if 'assays' not in api_results:
+        return []
+
+    mapping = dict()
+    results = api_results['assays']
+    for result in results:
+        logger.debug(result)
+        tgt = result['target_chembl_id']
+        assay = result['assay_chembl_id']
+        if tgt not in mapping:
+            mapping[tgt] = list()
+        mapping[tgt].append(assay)
+
+    logger.debug(mapping)
+    if not_list:
+        return mapping[chembl_ids[0]]
+
+    return mapping
+
 def get_bioactivities_for_targets(chembl_ids):
     """ get the activities for a target -- input either single item or a list """
 
@@ -115,19 +156,42 @@ def get_bioactivities_for_targets(chembl_ids):
 
     return results['activities']
 
-def get_assay_details(chembl_ids):
+def get_assay_details(ids, chunk_size=100):
     """ get the details for an assay -- input either single item or a list """
 
-    if type(chembl_ids) == type(list()):
-        results = send_api_request("assay", { 'assay_chembl_id__in' : ','.join(chembl_ids)})
-        if len(results['assays']) != len(chembl_ids):
-            logger.error("ERROR: Some ids not assays?: returned {} assays for {} ids".format(
-                len(results['assays']),len(chembl_ids)))
-        logger.debug("get_assay_details results: {}".format(results))
-        return results['assays']
+    not_list = False
+    chembl_ids = list()
+    if type(ids) != type(list()):
+        not_list = True
+        chembl_ids.append(ids)
+    else:
+        for id in ids:
+            chembl_ids.append(id)
 
-    # single molecule request
-    return send_api_request("assay/" + chembl_ids, {})
+    total_ids = len(chembl_ids)
+    results = list()
+    while len(chembl_ids):
+        run_list = list()
+        for i in range(min(len(chembl_ids), chunk_size)):
+            run_list.append(chembl_ids.pop())
+        logger.info("running {} remaining {}".format(len(run_list), len(chembl_ids)))
+        api_results = send_api_request("assay", { 'assay_chembl_id__in' : ','.join(run_list)})
+        for result in api_results['assays']:
+            results.append(result)
+
+    if len(results) != total_ids:
+        logger.error("ERROR: Some ids not assays?: returned {} assays for {} ids".format(
+            len(results), total_ids))
+
+    # add in the number of results
+    for i in range(0, len(results)):
+        assay_chembl_id = results[i]['assay_chembl_id']
+        results[i]['results_count'] = send_api_request("activity", { 'assay_chembl_id__in' : assay_chembl_id, 'limit' : 10 }, return_count=True)
+
+    if not_list:
+        return results[0]
+
+    return results
 
 def get_molecule_details(chembl_ids):
     """ get the details for a molecule -- input either single item or a list """
@@ -184,7 +248,7 @@ def get_target_details(chembl_ids):
 ## key method to do the api request for chembl
 ### Reference: https://www.ebi.ac.uk/chembl/api/data/docs
 
-def send_api_request(api_request, params, level=0, _results_list=None):
+def send_api_request(api_request, params, level=0, _results_list=None, return_count=False):
     """
         function to send the api request to ChEMBL API
         sends the query request and return json
@@ -274,6 +338,9 @@ def send_api_request(api_request, params, level=0, _results_list=None):
             if 'total_count' in content['page_meta']:
                 total_count = content['page_meta']['total_count']
             #logger.debug("type(content_json): {} content_json: {}".format(type(content_json), content_json))
+
+            if return_count:
+                return total_count
 
             for item in content[types_map[u_type]]:
                 _results_list.append(item)
