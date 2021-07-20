@@ -8,17 +8,17 @@ Part of the IBRI cheminformatics system
 Specific utility functions for returning assay results
 """
 import pprint
-from .. import chembl_api
+from .. import chembl
 
 def by_molecules(molecule_chembl_ids):
     """ retrieve the assay results by molecule_chembl_ids """
 
-    return chembl_api.get_bioactivities_for_molecules(molecule_chembl_ids)
+    return chembl.get_bioactivities_for_molecules(molecule_chembl_ids)
 
 def by_targets(target_chembl_ids):
     """ retrieve the assay results by target_chembl_ids """
 
-    return chembl_api.get_bioactivities_for_targets(target_chembl_ids)
+    return chembl.get_bioactivities_for_targets(target_chembl_ids)
 
 def get_targets(chembl_assay_results):
     """ retrieve the unique targets in chembl_assay_results """
@@ -48,7 +48,7 @@ def get_targets(chembl_assay_results):
     # add in the unique number for assays, molecules, results
     # TODO: use a utility function with cache so do not need to always recompute
     all_targets = list(targets.keys())
-    target_details = chembl_api.get_target_details(all_targets)
+    target_details = chembl.get_target_details(all_targets)
     target_info = dict()
     for tgt in target_details:
         target_info[tgt['target_chembl_id']] = tgt

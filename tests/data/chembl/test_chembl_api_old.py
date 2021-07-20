@@ -7,7 +7,7 @@ Part of the IBRI cheminformatics system
 
 test the utility functions for accessing chembl information
 """
-from data.chembl import api
+from data.chembl_old import api
 import sys
 import logging
 

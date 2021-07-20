@@ -8,7 +8,7 @@ Part of the IBRI cheminformatics system
 Specific utilities for working with chembl data directly through the chembl api
 """
 from pathlib import Path
-from data.chembl import api
+from . import api
 import os
 import sys
 import logging

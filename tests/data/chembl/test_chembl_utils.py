@@ -7,7 +7,7 @@ Part of the IBRI cheminformatics system
 
 test the utility functions for accessing chembl information
 """
-from data.chembl import utils
+from data.chembl_old import utils
 
 _test_target_id = 'CHEMBL1781870'
 _test_target_id_list = ['CHEMBL1781870', 'CHEMBL2331064']

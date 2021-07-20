@@ -14,7 +14,7 @@ import pprint
 import logging
 import json
 from utils import core_utils
-from data.chembl import get_assay_results
+from data.chembl_old import get_assay_results
 
 # test file definitions
 _test_content_assay_results_json_file_ = str(Path(__file__).parent / 'data/assay_results.json')
