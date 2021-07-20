@@ -232,6 +232,26 @@ def test_assay_queries():
     for id in chembl_ids.keys():
         assert chembl_ids[id] == _assay_id_to_chembl_id[id]
 
+    # assays for tids
+
+    _tgt_id_list = list(_tgt_tid_to_chembl_id.keys())
+    assay_ids = db_chembl.assay_ids_from_tids(_tgt_id_list[0])
+    assert type(assay_ids) == type(list())
+    assert len(assay_ids) == 3
+    for id in [751726, 1524224, 1524225]:
+        assert id in assay_ids
+
+    _tgt_id_list = list(_tgt_tid_to_chembl_id.keys())
+    assay_ids = db_chembl.assay_ids_from_tids(_tgt_id_list)
+    assert type(assay_ids) == type(dict())
+    assert len(assay_ids) == len(_tgt_id_list)
+    assert _tgt_id_list[0] in assay_ids
+    assert len(assay_ids[_tgt_id_list[0]]) == 3
+    for id in _tgt_id_list:
+        #assert id in assay_ids:
+        assert type(assay_ids[id]) == type(list())
+        assert len(assay_ids[id]) > 0
+
     # assay details
     _assay_id_list = list(_assay_id_to_chembl_id.keys())
     assay_details = db_chembl.assay_details_from_assay_ids(_assay_id_list[0])
@@ -261,6 +281,9 @@ def test_activities_queries():
     activities = db_chembl.activities_from_assay_ids(_assay_id_list)
     assert type(activities) == type(list())
     assert len(activities) == 54
+
+    # get activities for target chembl_id
+
 
     # Force debug listing
     #assert True == False

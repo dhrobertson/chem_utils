@@ -55,7 +55,7 @@ def _db_execute(sql_statement):
         data = cur.fetchall()
     except Exception as e:
         logger.error('***DB Execute Error: {}'.format(e))
-        conn = get_db_connector()
+        conn = _get_db_connector()
         conn.rollback()
     # post process the data
     return data
@@ -71,7 +71,6 @@ def _ids_to_str_list(ids):
     return ids_list_str
 
 def _structured_to_json(data):
-    print(data)
     results_json = list()
     if 'fields' not in data or 'values' not in data:
         logger.error('does not looks like structured data')
@@ -107,11 +106,12 @@ def _db_execute_structured(sql_statement, table, limit=None):
     if limit:
         sql = "{} limit {}".format(sql, limit)
     sql_results = _db_execute(sql)
-    for row in sql_results:
-        new_row = list()
-        for value in row:
-            new_row.append(value)
-        data['values'].append(new_row)
+    if sql_results:
+        for row in sql_results:
+            new_row = list()
+            for value in row:
+                new_row.append(value)
+            data['values'].append(new_row)
 
     return data
 
@@ -139,6 +139,17 @@ def chembl_ids_from_molregnos(molregnos):
 def assay_ids_from_chembl_ids(chembl_ids):
     """ search for assay_id by chembl_assay_id in assays"""
     return _get_id_mapping(chembl_ids, 'select chembl_id,assay_id from assays where chembl_id')
+
+def assay_ids_from_tids(tids):
+    """ search for assay_id by tid in assays"""
+    results = _get_id_mapping(tids, 'select tid,assay_id from assays where tid')
+    logger.debug("results: {}".format(results))
+
+    # handle return value type (remove from dict if single value)
+    logger.debug("type: {} len: {}".format(type(tids), len(results)))
+    if type(tids) != type(list()) and tids in results:
+        return results[tids]
+    return results
 
 def chembl_ids_from_assay_ids(assay_ids):
     """ search for assay_ids by chembl_molecule_id in molecule_dictionary"""
@@ -170,6 +181,9 @@ def activities_from_assay_ids(assay_ids):
     logger.debug("json results: {}".format(json_results))
     return json_results
 
+def get_bioactivities_for_targets(chembl_ids):
+    """ retrieve all activities for target chembl_ids from activities"""
+
 # TODO: DHR:s Fix and Test
 #def tids_from_component_ids(component_ids):
 #    """ search for tids by component_id in target_components"""
@@ -186,9 +200,19 @@ def _get_id_mapping(ids, sql_statement):
     ids_list_str = _ids_to_str_list(ids)
     sql_statement = "{} in ({})".format(sql_statement, ids_list_str)
     sql_results = _db_execute(sql_statement)
+    logger.debug("sql results: {}".format(sql_results))
     results = dict()
-    for result in sql_results:
-        results[result[0]] = result[1]
+    if sql_results:
+        for result in sql_results:
+            (key, value) = result
+            # make array if already in dictionary
+            if key in results:
+                if type(results[key]) != type(list()):
+                    prior_value = results[key]
+                    results[key] = [prior_value]
+                results[key].append(value)
+            else:
+                results[key] = value
     logger.debug("results: {}".format(results))
 
     return results

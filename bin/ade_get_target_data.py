@@ -19,7 +19,8 @@ import chem_utils
 from chem_utils.data import hugo_api
 from chem_utils.data import pharos_api
 from chem_utils.data import pharos_api
-from chem_utils.data import chembl_api
+from chem_utils.data import chembl as chembl_api
+from chem_utils.data.db import db_chembl
 
 ignore = ['gene_symbol']
 
@@ -234,30 +235,48 @@ def get_ade_info(in_file, out_file):
                                     value = c_processed_data[mapping['source_field']]
                                 gene_info[mapping['target_field']] = value
                             # get assays
-                            records = chembl_api.get_bioactivities_for_targets(target_chembl_id)
+                            mol_field = 'molecule_chembl_id'
+                            asy_field = 'assay_chembl_id'
+                            if False: # api
+                                records = chembl_api.get_bioactivities_for_targets(target_chembl_id)
+                            else: # db
+                                mol_field = 'molregno'
+                                asy_field = 'assay_id'
+                                tids_dict = db_chembl.tids_from_chembl_ids(target_chembl_id)
+                                tids = list(tids_dict.values())
+                                if len(tids) == 1:
+                                    tids = tids[0]
+                                assays = db_chembl.assay_ids_from_tids(tids)
+                                #print(tids_dict, tids, assays)
+                                #exit()
+                                records = list()
+                                if assays:
+                                    records = db_chembl.activities_from_assay_ids(assays)
+                                #print(tids, assays)
+                                #exit()
                             gene_info['chembl_results_count'] = len(records)
-                            counts_assay = dict()
+                            counts_asy = dict()
                             counts_mol = dict()
                             for record in records:
                                 logger.debug("    ChEMBL record {}".format(record))
-                                mol_id = record['molecule_chembl_id']
-                                assay_id = record['assay_chembl_id']
+                                mol_id = record[mol_field]
+                                asy_id = record[asy_field]
                                 if mol_id not in counts_mol:
                                     counts_mol[mol_id] = 0
                                 counts_mol[mol_id] += 1
-                                if assay_id not in counts_assay:
-                                    counts_assay[assay_id] = 0
-                                counts_assay[assay_id] += 1
-                            gene_info['chembl_assay_count'] = len(counts_assay)
+                                if asy_id not in counts_asy:
+                                    counts_asy[asy_id] = 0
+                                counts_asy[asy_id] += 1
+                            gene_info['chembl_assay_count'] = len(counts_asy)
                             gene_info['chembl_molecule_count'] = len(counts_mol)
-                            gene_info['chembl_ligand_score'] = 0.25*float(min(len(records), 100))/100.0 + 0.25*float(min(len(counts_assay), 3))/3.0 + 0.50*float(min(len(counts_mol), 20))/20.0
+                            gene_info['chembl_ligand_score'] = 0.25*float(min(len(records), 100))/100.0 + 0.25*float(min(len(counts_asy), 3))/3.0 + 0.50*float(min(len(counts_mol), 20))/20.0
                     else:
                         logger.critical("ChEMBL unable to find chembl_id for {}".format(g_symbol))
             else:
                 logger.critical("ChEMBL unable to find access \"hgnc_uniprot_ids for {} ... skipping ".format(g_symbol))
             logger.debug("\n after CHEMBL gene_info: {}\n".format(gene_info))
             if len(genes)>10:
-                logger.warn("\r Gene {:3d} of {}".format(count, len(genes)))
+                logger.warning("\r Gene {:3d} of {}".format(count, len(genes)))
 
             #at the risk of more I/O -- save cache
             gene_cache[gene] = gene_info
