@@ -1,1 +1,6 @@
+pytest
 requests
+psycopg2-binary
+requests-cache
+bs4
+rdkit-pypi
