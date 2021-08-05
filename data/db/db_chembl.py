@@ -13,7 +13,7 @@ import logging
 
 # Global variables for connections so we don't create multiple
 postgresql_connector = dict()
-database = 'chembl_28'
+database = 'chembl_29'
 
 # create logger and set logger level
 logger = logging.getLogger()
@@ -120,6 +120,29 @@ def _db_execute_structured(sql_statement, table, limit=None):
 ## TODO: refactor to have wrapper functions depending on whether api or db   ##
 ###############################################################################
 
+def get_all_tids():
+    """ get all tids from target_dictionary"""
+    sql_results = _db_execute('select tid from target_dictionary')
+    logger.debug("results: {}".format(sql_results))
+    ids_list = list()
+    for item in sql_results:
+        ids_list.append(item[0])
+    logger.debug("ids_list: {}".format(ids_list))
+
+    return ids_list
+
+
+def get_all_molregnos():
+    """ get all molregno from molecule_dictionary"""
+    sql_results = _db_execute('select molregno from molecule_dictionary')
+    logger.debug("results: {}".format(sql_results))
+    ids_list = list()
+    for item in sql_results:
+        ids_list.append(item[0])
+    logger.debug("ids_list: {}".format(ids_list))
+
+    return ids_list
+
 def tids_from_chembl_ids(chembl_ids):
     """ search for tids by chembl_target_id in target_dictionary"""
     return _get_id_mapping(chembl_ids, 'select chembl_id,tid from target_dictionary where chembl_id')
@@ -170,10 +193,32 @@ def assay_details_from_assay_ids(assay_ids):
 
     return json_results
 
+def get_all_assay_ids():
+    """ get all assay_ids from assays"""
+    sql_results = _db_execute('select assay_id from assays')
+    logger.debug("results: {}".format(sql_results))
+    ids_list = list()
+    for item in sql_results:
+        ids_list.append(item[0])
+    logger.debug("ids_list: {}".format(ids_list))
+
+    return ids_list
+
 def activities_from_assay_ids(assay_ids):
     """ retrieve all activities for assay_ids from activities"""
     ids_list_str = _ids_to_str_list(assay_ids)
     sql_statement = "{} in ({})".format('select * from activities where assay_id', ids_list_str)
+    sql_results = _db_execute_structured(sql_statement, 'activities')
+    logger.debug("results: {}".format(sql_results))
+    json_results = _structured_to_json(sql_results)
+
+    logger.debug("json results: {}".format(json_results))
+    return json_results
+
+def activities_from_molregnos(molregnos):
+    """ retrieve all activities for assay_ids from activities"""
+    ids_list_str = _ids_to_str_list(molregnos)
+    sql_statement = "{} in ({})".format('select * from activities where molregno', ids_list_str)
     sql_results = _db_execute_structured(sql_statement, 'activities')
     logger.debug("results: {}".format(sql_results))
     json_results = _structured_to_json(sql_results)

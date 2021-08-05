@@ -50,6 +50,7 @@ _tgt_component_id_to_tids = {
 }
 _test_molecule_id = 'CHEMBL3629617'
 _test_molecule_id_list = ['CHEMBL3629617','CHEMBL1974235']
+_test_molregno_list = [1626744, 435293]
 _test_assay_id = 'CHEMBL4274857'
 _test_assay_id_list = ['CHEMBL4274857','CHEMBL1785363']
 _test_assay_id_list_lg = ['CHEMBL904416', 'CHEMBL904417', 'CHEMBL939816', 'CHEMBL991464', 'CHEMBL991465',
@@ -91,7 +92,7 @@ def test_db_connection():
     assert 'fields' in data
     assert len(data['fields']) == 7
     assert 'values' in data
-    assert len(data['values']) == 14347
+    assert len(data['values']) >= 14347
 
 def test_utility_functions():
     """ test the utility functions """
@@ -146,6 +147,10 @@ def test_molecule_queries():
     for id in chembl_ids.keys():
         assert chembl_ids[id] == _cpd_molregno_to_chembl_id[id]
 
+    all_molregnos = db_chembl.get_all_molregnos()
+    assert type(all_molregnos) == type(list())
+    assert len(all_molregnos) > 2105460
+
     # Force debug listing
     #assert True == False
 
@@ -181,6 +186,9 @@ def test_target_queries():
     for id in chembl_ids.keys():
         assert chembl_ids[id] == _tgt_tid_to_chembl_id[id]
 
+    all_tids = db_chembl.get_all_tids()
+    assert type(all_tids) == type(list())
+    assert len(all_tids) > 14550
     # assay_ids from tids
 
     # component_id to tid and vice versa
@@ -265,6 +273,9 @@ def test_assay_queries():
     assert type(assay_details) == type(list())
     assert len(assay_details) == 2
 
+    all_assay_ids = db_chembl.get_all_assay_ids()
+    assert type(all_assay_ids) == type(list())
+    assert len(all_assay_ids) > 1383550
     # Force debug listing
     #assert True == False
 
@@ -283,7 +294,15 @@ def test_activities_queries():
     assert len(activities) == 54
 
     # get activities for target chembl_id
+    # get activities for assay_id
+    _assay_id_list = list(_assay_id_to_chembl_id.keys())
+    activities = db_chembl.activities_from_molregnos(_test_molregno_list[0])
+    assert type(activities) == type(list())
+    assert len(activities) == 8
 
+    activities = db_chembl.activities_from_molregnos(_test_molregno_list)
+    assert type(activities) == type(list())
+    assert len(activities) == 47
 
     # Force debug listing
     #assert True == False
