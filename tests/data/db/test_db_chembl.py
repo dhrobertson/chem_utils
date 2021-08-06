@@ -59,6 +59,18 @@ _test_assay_id_list_lg = ['CHEMBL904416', 'CHEMBL904417', 'CHEMBL939816', 'CHEMB
 _test_accession_id = 'Q13936'
 _test_accession_id_list = ['Q13936', 'P07948']
 
+def test_database_selections():
+    _test_name = 'test_database_selections'
+    default_database = db_chembl.get_selected_database()
+    assert default_database == 'chembl_29'
+
+    assert db_chembl.set_database('Error') == False
+    assert db_chembl.set_database('chembl_28') == True
+    assert db_chembl.get_selected_database() == 'chembl_28'
+
+    # leave it in original
+    assert db_chembl.set_database(default_database) == True
+
 # test the interface for simple calls
 def test_db_connection():
     _test_name = 'test_db_connection'

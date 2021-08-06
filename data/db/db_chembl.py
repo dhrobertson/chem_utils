@@ -12,40 +12,63 @@ import json
 import logging
 
 # Global variables for connections so we don't create multiple
-postgresql_connector = dict()
-database = 'chembl_29'
+_postgresql_connector = dict()
+_databases = ['chembl_29', 'chembl_28', 'oprm1_chembl_29']
+_selected_database = _databases[0]
 
 # create logger and set logger level
 logger = logging.getLogger()
 
 ## key methods to do the db requests for chembl
 
+def get_selected_database():
+    return _selected_database
+
+#TODO: Need to make this dynamic
+def set_database(database):
+    global _selected_database
+    if database not in _databases:
+        logger.error("Unable to set database to \"{}\" as it is not one of the supported databases")
+        return False
+    _selected_database = database
+    return True
+
 # return the rds connector for the database -- only create once per database
 def _get_db_connector():
-    global postgresql_connector
-    if 'conn' not in postgresql_connector or postgresql_connector['conn'] == None:
+    global _postgresql_connector
+    global _selected_database
+
+    if _selected_database not in _postgresql_connector:
+        _postgresql_connector[_selected_database] = dict()
+
+    if 'conn' not in _postgresql_connector[_selected_database] or _postgresql_connector[_selected_database]['conn'] == None:
         # go ahead and try to connect
         try:
-            postgresql_connector['conn'] = psycopg2.connect(dbname=database)
+            _postgresql_connector[_selected_database]['conn'] = psycopg2.connect(dbname=_selected_database)
         except Exception as e:
-            logger.error('***DB Connection Create Error: {}'.format(e))
-            postgresql_connector['conn'] = None
+            logger.error('***DB Connection Create Error for {}: {}'.format(_selected_database, e))
+            _postgresql_connector[_selected_database]['conn'] = None
 
-    return postgresql_connector['conn']
+    return _postgresql_connector[_selected_database]['conn']
 
 # return the rds connector for the database -- only create once per database
 def _get_db_cursor():
-    global postgresql_connector
-    if 'cur' not in postgresql_connector or postgresql_connector['cur'] == None:
+    global _postgresql_connector
+    global _selected_database
+
+    if _selected_database not in _postgresql_connector:
+        _postgresql_connector[_selected_database] = dict()
+
+    if 'cur' not in _postgresql_connector[_selected_database] or _postgresql_connector[_selected_database]['cur'] == None:
         # go ahead and try to connect
         try:
             conn = _get_db_connector()
-            postgresql_connector['cur'] = conn.cursor()
+            _postgresql_connector[_selected_database]['cur'] = conn.cursor()
         except Exception as e:
             logger.error('***DB Connection Cursor Error: {}'.format(e))
-            postgresql_connector['cur'] = None
+            _postgresql_connector[_selected_database]['cur'] = None
 
-    return postgresql_connector['cur']
+    return _postgresql_connector[_selected_database]['cur']
 
 def _db_execute(sql_statement):
     cur = _get_db_cursor()
