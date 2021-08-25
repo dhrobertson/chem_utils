@@ -22,7 +22,7 @@ def create_single_query_symbol(gene_symbol):
 
     logger.debug("parameter: {} type(parameter): {}".format(gene_symbol, type(gene_symbol)))
     query = {
-        "query": "query targetDetails{target(q:{sym:\"" + gene_symbol + "\"}){name tdl fam sym description novelty}}",
+        "query": "query targetDetails{target(q:{sym:\"" + gene_symbol + "\"}){name tdl fam sym description novelty diseaseCounts {name value} ligandCounts {name value}}}",
         "variables": {}
     }
     return query

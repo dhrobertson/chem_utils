@@ -16,7 +16,7 @@ logger = logging.getLogger()
 logger.level = logging.DEBUG
 
 test_query = {
-        "query": "query targetDetails{target(q:{sym:\"GPR31\"}){name tdl fam sym description novelty}}",
+        "query": "query targetDetails{target(q:{sym:\"GPR31\"}){name tdl fam sym description novelty diseaseCounts {name value} ligandCounts {name value}}}",
         "variables": {}
     }
 test_query_error = {
@@ -26,15 +26,35 @@ test_query_error = {
 test_query_results = {
     "data": {
         "target": {
-            "name" : "12-(S)-hydroxy-5,8,10,14-eicosatetraenoic acid receptor",
-            "tdl" : "Tbio",
-            "fam" : "GPCR",
-            "sym" : "GPR31" ,
-            "description" : None,
-            "novelty" : 0.09160693
+            "name": "12-(S)-hydroxy-5,8,10,14-eicosatetraenoic acid receptor",
+            "tdl": "Tbio",
+            "fam": "GPCR",
+            "sym": "GPR31",
+            "description": None,
+            "novelty": 0.09160693,
+            "diseaseCounts": [
+                {
+                    "name": "carcinoma",
+                    "value": 15219
+                },
+                {
+                    "name": "diabetes mellitus",
+                    "value": 1616
+                }
+            ],
+                "ligandCounts": [
+                    {
+                        "name": "ligand",
+                        "value": 0
+                    },
+                    {
+                        "name": "drug",
+                        "value": 0
+                    }
+                ]
+            }
         }
     }
-}
 
 _test_target_id_ = "GPR31"
 _test_target_ids_ = ["INPP5D", "SHIP1", "PAK1"]
@@ -42,6 +62,7 @@ _test_target_ids_ = ["INPP5D", "SHIP1", "PAK1"]
 def test_core_functions():
     """ test sending the core api request to Pharos GraphQL """
     results = pharos_api.send_api_request(test_query)
+    print(results)
     assert results == test_query_results
     results_error = pharos_api.send_api_request(test_query_error)
     assert results_error == {}
