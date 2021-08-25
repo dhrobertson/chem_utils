@@ -74,7 +74,6 @@ def get_target_info(gene_symbols):
         gene_symbols = [gene_symbols]
 
     _targets_cache = _get_data_cache('targets')
-    print(_targets_cache[0])
     records = list()
     # search first by approvedSymbol
     found = list()

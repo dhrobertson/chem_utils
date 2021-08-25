@@ -1,0 +1,337 @@
+[
+  {
+    "id": "ENSG00000091831",
+    "approvedName": "estrogen receptor 1",
+    "approvedSymbol": "ESR1",
+    "bioType": "protein_coding",
+    "hgncId": "HGNC:3467",
+    "chemicalProbes": {
+      "probeminer": {
+        "link": "https://probeminer.icr.ac.uk/#/P03372"}
+      },
+      "reactome": [
+        "R-HSA-1251985",
+        "R-HSA-1257604",
+        "R-HSA-2219530",
+        "R-HSA-383280",
+        "R-HSA-4090294",
+        "R-HSA-5689896",
+        "R-HSA-6811558",
+        "R-HSA-8866910",
+        "R-HSA-8931987",
+        "R-HSA-8939211",
+        "R-HSA-8939256",
+        "R-HSA-8939902",
+        "R-HSA-9009391",
+        "R-HSA-9018519"
+      ],
+      "nameSynonyms": [
+        "nuclear receptor subfamily 3 group A member 1",
+        "Nuclear receptor subfamily 3 group A member 1",
+        "Estradiol receptor",
+        "E2 receptor alpha",
+        "estrogen receptor alpha",
+        "ER-alpha", "oestrogen receptor alpha",
+        "ER", "Estrogen receptor"
+      ],
+      "symbolSynonyms": [
+        "NR3A1",
+        "Era",
+        "ER-alpha",
+        "ESR"
+      ],
+      "genomicLocation": {
+        "chromosome": "6",
+        "start": 151656691,
+        "end": 152129619,
+        "strand": 1
+      },
+      "proteinAnnotations": {
+        "id": "P03372",
+        "accessions": [
+          "Q14276",
+          "P03372",
+          "Q9NU51",
+          "Q13511",
+          "Q9UDZ7",
+          "Q9UIS7",
+          "Q6MZQ9",
+          "Q5T5H7"
+        ],
+        "functions": [
+          "Nuclear hormone receptor. The steroid hormones and their receptors are involved in the regulation of eukaryotic gene expression and affect cellular proliferation and differentiation in target tissues. Ligand-dependent nuclear transactivation involves either direct homodimer binding to a palindromic estrogen response element (ERE) sequence or association with other DNA-binding transcription factors, such as AP-1/c-Jun, c-Fos, ATF-2, Sp1 and Sp3, to mediate ERE-independent signaling. Ligand binding induces a conformational change allowing subsequent or combinatorial association with multiprotein coactivator complexes through LXXLL motifs of their respective components. Mutual transrepression occurs between the estrogen receptor (ER) and NF-kappa-B in a cell-type specific manner. Decreases NF-kappa-B DNA-binding activity and inhibits NF-kappa-B-mediated transcription from the IL6 promoter and displace RELA/p65 and associated coregulators from the promoter. Recruited to the NF-kappa-B response element of the CCL2 and IL8 promoters and can displace CREBBP. Present with NF-kappa-B components RELA/p65 and NFKB1/p50 on ERE sequences. Can also act synergistically with NF-kappa-B to activate transcription involving respective recruitment adjacent response elements; the function involves CREBBP. Can activate the transcriptional activity of TFF1. Also mediates membrane-initiated estrogen signaling involving various kinase cascades. Isoform 3 is involved in activation of NOS3 and endothelial nitric oxide production. Isoforms lacking one or several functional domains are thought to modulate transcriptional activity by competitive ligand or DNA binding and/or heterodimerization with the full-length receptor. Essential for MTA1-mediated transcriptional regulation of BRCA1 and BCAS3. Isoform 3 can bind to ERE and inhibit isoform 1."
+        ],
+        "pathways": [
+        ],
+        "similarities": [
+          "Belongs to the nuclear hormone receptor family. NR3 subfamily."
+        ],
+        "subcellularLocations": [
+          "Nucleus",
+          "Cytoplasm",
+          "Cell membrane",
+          "Golgi apparatus"
+        ],
+        "subunits": [
+          "Binds DNA as a homodimer. Can form a heterodimer with ESR2. Isoform 3 can probably homodimerize or heterodimerize with isoform 1 and ESR2. Interacts with FOXC2, MAP1S, SLC30A9, UBE1C and NCOA3 coactivator (By similarity). Interacts with EP300; the interaction is estrogen-dependent and enhanced by CITED1. Interacts with CITED1; the interaction is estrogen-dependent. Interacts with NCOA5 and NCOA6 coactivators. Interacts with NCOA7; the interaction is a ligand-inducible. Interacts with PHB2, PELP1 and UBE1C. Interacts with AKAP13. Interacts with CUEDC2. Interacts with KDM5A. Interacts with SMARD1. Interacts with HEXIM1. Interacts with PBXIP1. Interaction with MUC1 is stimulated by 7 beta-estradiol (E2) and enhances ERS1-mediated transcription. Interacts with DNTTIP2, FAM120B and UIMC1. Interacts with isoform 4 of TXNRD1. Interacts with KMT2D/MLL2. Interacts with ATAD2 and this interaction is enhanced by estradiol. Interacts with KIF18A and LDB1. Interacts with RLIM (via C-terminus). Interacts with MACROD1. Interacts with SH2D4A and PLCG. Interaction with SH2D4A blocks binding to PLCG and inhibits estrogen-induced cell proliferation. Interacts with DYNLL1. Interacts with CCDC62 in the presence of estradiol/E2; this interaction seems to enhance the transcription of target genes. Interacts with NR2C1; the interaction prevents homodimerization of ESR1 and suppresses its transcriptional activity and cell growth. Interacts with DNAAF4. Interacts with PRMT2. Interacts with PI3KR1 or PI3KR2, SRC and PTK2/FAK1. Interacts with RBFOX2. Interacts with STK3/MST2 only in the presence of SAV1 and vice-versa. Binds to CSNK1D. Interacts with NCOA2; NCOA2 can interact with ESR1 AF-1 and AF-2 domains simultaneously and mediate their transcriptional synergy. Interacts with DDX5. Interacts with NCOA1; the interaction seems to require a self-association of N-terminal and C-terminal regions. Interacts with ZNF366, DDX17, NFKB1, RELA, SP1 and SP3. Interacts with NRIP1 (By similarity). Interacts with GPER1; the interaction occurs in an estrogen-dependent manner. Interacts with CLOCK and the interaction is stimulated by estrogen. Interacts with BCAS3. Interacts with TRIP4 (ufmylated); estrogen dependent. Interacts with LMTK3; the interaction phosphorylates ESR1 (in vitro) and protects it against proteasomal degradation. Interacts with CCAR2 (via N-terminus) in a ligand-independent manner. Interacts with ZFHX3. Interacts with SFR1 in a ligand-dependent and -independent manner (PubMed:23874500). Interacts with DCAF13, LATS1 and DCAF1; regulates ESR1 ubiquitination and ubiquitin-mediated proteasomal degradation (PubMed:28068668). Interacts (via DNA-binding domain) with POU4F2 (C-terminus); this interaction increases the estrogen receptor ESR1 transcriptional activity in a DNA- and ligand 17-beta-estradiol-independent manner (By similarity). Interacts with ESRRB isoform 1 (PubMed:19755138). Interacts with UBE3A and WBP2 (PubMed:16772533). Interacts with GTF2B (PubMed:1517211). Interacts with RBM39 (By similarity). In the absence of hormonal ligand, interacts with TACC1 (PubMed:20078863)."
+        ],
+        "classes": [
+          {
+            "l1": {
+              "id": 12,
+              "label": "Transcription factor"
+            },
+            "l2": {
+              "id": 1033, "label": "Nuclear receptor"
+            },
+            "l3": {
+              "id": 1043,
+              "label": "Nuclear hormone receptor subfamily 3"
+              },
+              "l4": {
+                "id": 1165,
+                "label": "Nuclear hormone receptor subfamily 3 group A"
+              },
+              "l5": {
+                "id": 370,
+                "label": "Nuclear hormone receptor subfamily 3 group A member 1"
+              }
+            }
+          ]
+        },
+        "tractability": {
+          "antibody": {
+            "buckets": [4, 5, 6],
+            "categories": {
+              "clinical_precedence": 0.0,
+              "predicted_tractable_high_confidence": 1.0,
+              "predicted_tractable_med_low_confidence": 0.4
+            },
+            "top_category": "Predicted_Tractable_ab_High_confidence"
+          },
+          "smallmolecule": {
+            "buckets": [1, 4, 5, 6, 8],
+            "categories": {
+              "clinical_precedence": 1.0,
+              "discovery_precedence": 1.0,
+              "predicted_tractable": 1.0
+            },
+            "high_quality_compounds": 827,
+            "small_molecule_genome_member": True,
+            "top_category": "Clinical_Precedence_sm"
+            }
+          },
+          "go": [
+            {
+              "id": "GO:0000785",
+              "value": {
+                "evidence": "ECO_0000314",
+                "project": "BHF-UCL",
+                "term": "C:chromatin"
+                }
+              },
+              {
+                "id": "GO:0005737",
+                "value": {
+                  "evidence": "ECO_0000314",
+                  "project": "UniProtKB",
+                  "term": "C:cytoplasm"
+                }
+              },
+              {
+                "id": "GO:0005829",
+                "value": {
+                  "evidence": "ECO_0000304",
+                  "project": "Reactome",
+                  "term": "C:cytosol"
+                }
+              },
+              {
+                "id": "GO:0005794",
+                "value": {
+                  "evidence": "ECO_0000501",
+                  "project": "UniProtKB-SubCell",
+                  "term": "C:Golgi apparatus"
+                }
+              },
+              {
+                "id": "GO:0016021",
+                "value": {
+                  "evidence": "ECO_0000501",
+                  "project": "UniProtKB-KW",
+                  "term": "C:integral component of membrane"
+                }
+              },
+              {
+                "id": "GO:0016020",
+                "value": {
+                  "evidence": "ECO_0000303",
+                  "project": "UniProtKB",
+                  "term": "C:membrane"
+                }
+              },
+              {
+                "id": "GO:0005654",
+                "value": {
+                  "evidence": "ECO_0000304",
+                  "project": "Reactome",
+                  "term": "C:nucleoplasm"
+                }
+              },
+              {
+                "id": "GO:0005634",
+                "value": {
+                  "evidence": "ECO_0000314",
+                   "project": "UniProtKB", "term": "C:nucleus"
+                }
+              },
+              {"id": "GO:0005886", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "C:plasma membrane"}},
+              {"id": "GO:0032991", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "C:protein-containing complex"}},
+              {"id": "GO:0097550", "value": {"evidence": "ECO_0000314", "project": "CAFA", "term": "C:transcription preinitiation complex"}},
+              {"id": "GO:0035327", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "C:transcriptionally active chromatin"}},
+              {"id": "GO:0051117", "value": {"evidence": "ECO_0000314", "project": "MGI", "term": "F:ATPase binding"}},
+              {"id": "GO:0008013", "value": {"evidence": "ECO_0000353", "project": "BHF-UCL", "term": "F:beta-catenin binding"}},
+              {"id": "GO:0003682", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "F:chromatin binding"}},
+              {"id": "GO:0001228", "value": {"evidence": "ECO_0000314", "project": "NTNU_SB", "term": "F:DNA-binding transcription activator activity, RNA polymerase II-specific"}},
+              {"id": "GO:0003700", "value": {"evidence": "ECO_0000303", "project": "BHF-UCL", "term": "F:DNA-binding transcription factor activity"}},
+              {"id": "GO:0000981", "value": {"evidence": "ECO_0000247", "project": "NTNU_SB", "term": "F:DNA-binding transcription factor activity, RNA polymerase II-specific"}},
+              {"id": "GO:0019899", "value": {"evidence": "ECO_0000353", "project": "UniProtKB", "term": "F:enzyme binding"}},
+              {"id": "GO:0030284", "value": {"evidence": "ECO_0000314", "project": "BHF-UCL", "term": "F:estrogen receptor activity"}},
+              {"id": "GO:0030331", "value": {"evidence": "ECO_0000353", "project": "CAFA", "term": "F:estrogen receptor binding"}},
+              {"id": "GO:0034056", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "F:estrogen response element binding"}},
+              {"id": "GO:0042802", "value": {"evidence": "ECO_0000353", "project": "IntAct", "term": "F:identical protein binding"}},
+              {"id": "GO:0030235", "value": {"evidence": "ECO_0000303", "project": "UniProtKB", "term": "F:nitric-oxide synthase regulator activity"}},
+              {"id": "GO:0004879", "value": {"evidence": "ECO_0000314", "project": "BHF-UCL", "term": "F:nuclear receptor activity"}},
+              {"id": "GO:0019901", "value": {"evidence": "ECO_0000353", "project": "UniProtKB", "term": "F:protein kinase binding"}},
+              {"id": "GO:0000978", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "F:RNA polymerase II cis-regulatory region sequence-specific DNA binding"}},
+              {"id": "GO:0001226", "value": {"evidence": "ECO_0000353", "project": "ARUK-UCL", "term": "F:RNA polymerase II transcription corepressor binding"}},
+              {"id": "GO:1990837", "value": {"evidence": "ECO_0000314", "project": "ARUK-UCL", "term": "F:sequence-specific double-stranded DNA binding"}},
+              {"id": "GO:0005496", "value": {"evidence": "ECO_0000250", "project": "UniProtKB", "term": "F:steroid binding"}},
+              {"id": "GO:0017025", "value": {"evidence": "ECO_0000353", "project": "CAFA", "term": "F:TBP-class protein binding"}},
+              {"id": "GO:0001093", "value": {"evidence": "ECO_0000353", "project": "CAFA", "term": "F:TFIIB-class transcription factor binding"}},
+              {"id": "GO:0001223", "value": {"evidence": "ECO_0000353", "project": "UniProtKB", "term": "F:transcription coactivator binding"}},
+              {"id": "GO:0008134", "value": {"evidence": "ECO_0000353", "project": "UniProtKB", "term": "F:transcription factor binding"}},
+              {"id": "GO:0008270", "value": {"evidence": "ECO_0000501", "project": "InterPro", "term": "F:zinc ion binding"}},
+              {"id": "GO:0008209", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:androgen metabolic process"}},
+              {"id": "GO:0001547", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:antral ovarian follicle growth"}},
+              {"id": "GO:0071392", "value": {"evidence": "ECO_0000314", "project": "ARUK-UCL", "term": "P:cellular response to estradiol stimulus"}},
+              {"id": "GO:0071391", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:cellular response to estrogen stimulus"}},
+              {"id": "GO:0006338", "value": {"evidence": "ECO_0000303", "project": "UniProtKB", "term": "P:chromatin remodeling"}},
+              {"id": "GO:0002064", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:epithelial cell development"}},
+              {"id": "GO:0060750", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:epithelial cell proliferation involved in mammary gland duct elongation"}},
+              {"id": "GO:0030520", "value": {"evidence": "ECO_0000314", "project": "CAFA", "term": "P:intracellular estrogen receptor signaling pathway"}},
+              {"id": "GO:0030518", "value": {"evidence": "ECO_0000250", "project": "UniProtKB", "term": "P:intracellular steroid hormone receptor signaling pathway"}},
+              {"id": "GO:0008584", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:male gonad development"}},
+              {"id": "GO:0060749", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:mammary gland alveolus development"}},
+              {"id": "GO:0060745", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:mammary gland branching involved in pregnancy"}},
+              {"id": "GO:0043433", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "P:negative regulation of DNA-binding transcription factor activity"}},
+              {"id": "GO:0010629", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "P:negative regulation of gene expression"}},
+              {"id": "GO:0043124", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "P:negative regulation of I-kappaB kinase/NF-kappaB signaling"}},
+              {"id": "GO:1903799", "value": {"evidence": "ECO_0000315", "project": "BHF-UCL", "term": "P:negative regulation of production of miRNAs involved in gene silencing by miRNA"}},
+              {"id": "GO:0000122", "value": {"evidence": "ECO_0000315", "project": "BHF-UCL", "term": "P:negative regulation of transcription by RNA polymerase II"}},
+              {"id": "GO:0007200", "value": {"evidence": "ECO_0000250", "project": "UniProtKB", "term": "P:phospholipase C-activating G protein-coupled receptor signaling pathway"}},
+              {"id": "GO:0007204", "value": {"evidence": "ECO_0000250", "project": "UniProtKB", "term": "P:positive regulation of cytosolic calcium ion concentration"}},
+              {"id": "GO:0051091", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "P:positive regulation of DNA-binding transcription factor activity"}},
+              {"id": "GO:0048146", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:positive regulation of fibroblast proliferation"}},
+              {"id": "GO:0045429", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "P:positive regulation of nitric oxide biosynthetic process"}},
+              {"id": "GO:0051000", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "P:positive regulation of nitric-oxide synthase activity"}},
+              {"id": "GO:0010863", "value": {"evidence": "ECO_0000250", "project": "UniProtKB", "term": "P:positive regulation of phospholipase C activity"}},
+              {"id": "GO:0051897", "value": {"evidence": "ECO_0000304", "project": "Reactome", "term": "P:positive regulation of protein kinase B signaling"}},
+              {"id": "GO:0045899", "value": {"evidence": "ECO_0000314", "project": "CAFA", "term": "P:positive regulation of RNA polymerase II transcription preinitiation complex assembly"}},
+              {"id": "GO:0045944", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "P:positive regulation of transcription by RNA polymerase II"}},
+              {"id": "GO:0045893", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "P:positive regulation of transcription, DNA-templated"}},
+              {"id": "GO:0060527", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:prostate epithelial cord arborization involved in prostate glandular acinus morphogenesis"}},
+              {"id": "GO:0060523", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:prostate epithelial cord elongation"}},
+              {"id": "GO:0016579", "value": {"evidence": "ECO_0000304", "project": "Reactome", "term": "P:protein deubiquitination"}},
+              {"id": "GO:0071168", "value": {"evidence": "ECO_0000315", "project": "BHF-UCL", "term": "P:protein localization to chromatin"}},
+              {"id": "GO:0042981", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:regulation of apoptotic process"}},
+              {"id": "GO:0060687", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:regulation of branching involved in prostate gland morphogenesis"}},
+              {"id": "GO:0050727", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:regulation of inflammatory response"}},
+              {"id": "GO:0033146", "value": {"evidence": "ECO_0000304", "project": "Reactome", "term": "P:regulation of intracellular estrogen receptor signaling pathway"}},
+              {"id": "GO:0034121", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:regulation of toll-like receptor signaling pathway"}},
+              {"id": "GO:0006357", "value": {"evidence": "ECO_0000318", "project": "GO_Central", "term": "P:regulation of transcription by RNA polymerase II"}},
+              {"id": "GO:0006355", "value": {"evidence": "ECO_0000303", "project": "UniProtKB", "term": "P:regulation of transcription, DNA-templated"}},
+              {"id": "GO:0030111", "value": {"evidence": "ECO_0000304", "project": "Reactome", "term": "P:regulation of Wnt signaling pathway"}},
+              {"id": "GO:0032355", "value": {"evidence": "ECO_0000314", "project": "BHF-UCL", "term": "P:response to estradiol"}},
+              {"id": "GO:0043627", "value": {"evidence": "ECO_0000314", "project": "UniProtKB", "term": "P:response to estrogen"}},
+              {"id": "GO:0007165", "value": {"evidence": "ECO_0000304", "project": "ProtInc", "term": "P:signal transduction"}},
+              {"id": "GO:0048863", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:stem cell differentiation"}},
+              {"id": "GO:0006367", "value": {"evidence": "ECO_0000304", "project": "Reactome", "term": "P:transcription initiation from RNA polymerase II promoter"}},
+              {"id": "GO:0060065", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:uterus development"}},
+              {"id": "GO:0060068", "value": {"evidence": "ECO_0000501", "project": "Ensembl", "term": "P:vagina development"}}
+            ],
+            "hallMarks": {
+              "attributes": [
+                {"pmid": 27727438, "attribute_name": "types of alteration in cancer", "description": "recurrent missense mutations K303R, Y537S, D538G"},
+                {"pmid": 10945602, "attribute_name": "impact of mutation on function", "description": "K303R shows increased sensitivity to estrogen and increased proliferation at subphysiological levels of estrogen"},
+                {"pmid": 25099679, "attribute_name": "fusion partner", "description": "CCDC170 "},
+                {"pmid": 22240483, "attribute_name": "interaction with pathogen", "description": "protects against HBV-associated hepatocellular carcinoma by repressing transcription of HBV genes"},
+                {"pmid": 26122181, "attribute_name": "impact of mutation on function", "description": "missense mutations clustered in the ligand binding domain (D538G, Y537S) leads to constant, ligand-independent activity of ESR1"},
+                {"pmid": 26122181, "attribute_name": "role in cancer", "description": "oncogene"},
+                {"pmid": 19027010, "attribute_name": "role in cancer", "description": "TSG"},
+                {"pmid": 25099679, "attribute_name": "role in cancer", "description": "fusion"}
+              ],
+              "cancer_hallmarks": [
+                {"pmid": 25576212, "description": "enhances metastatic capacity", "label": "invasion and metastasis", "promote": True, "suppress": False},
+                {"pmid": 25728938, "description": "silencing of ESR1 in MCF-7 cell-line induces EMT and expression of specific matrix effectors associated with metastasis", "label": "invasion and metastasis", "promote": True, "suppress": False},
+                {"pmid": 19027010, "description": "overexpression of miR-18a decreases ERalpha levels and stimulates cell proliferation", "label": "suppression of growth", "promote": True, "suppress": False},
+                {"pmid": 24475282, "description": "immune escape mechanisms in ERalpha breast cancer may be facilitated through an ERalpha suppressive mechanism on IFN-gamma signalling", "label": "escaping immune response to cancer", "promote": True, "suppress": False},
+                {"pmid": 24374826, "description": "ER alpha in cancer-associated fibroblasts suppresses prostate cancer invasion via modulation of thrombospondin 2 and matrix metalloproteinase 3", "label": "invasion and metastasis", "promote": False, "suppress": True},
+                {"pmid": 26122181, "description": "activation promotes cell proliferation and resistance to endocrine signals", "label": "proliferative signalling", "promote": True, "suppress": False}
+              ],
+              "function_summary": [
+                {"pmid": 26122181, "description": "estrogen receptor, transcription factor"},
+                {"pmid": 25375021, "description": "stimulates transcription of mitochondrial genes"},
+                {"pmid": 25594859, "description": "induces prosurvival autophagy"},
+                {"pmid": 25534852, "description": "regulates chromosome alignment and spindle dynamics by stabilising microtubules during mitosis"}
+              ]
+            },
+            "safety": {
+              "experimental_toxicity": [
+                {
+                  "data_source": "Tox21",
+                  "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I",
+                  "experiment_details": {
+                    "assay_description": "ACEA_ER is a cell-based, single-readout assay that uses T47D, a human breast cell line, with measurements taken at 80 hours after chemical dosing in a 96-well or 384-well plate.",
+                    "assay_format": "cell line",
+                    "assay_format_type": "cell-based",
+                    "cell_short_name": "T47D", "tissue": ""
+                  }
+                },
+                {
+                  "data_source": "Tox21",
+                  "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I",
+                  "experiment_details": {
+                    "assay_description": "ATG_CIS is a cell-based, multiplexed-readout assay that uses HepG2, a human liver cell line, with measurements taken at 24 hours after chemical dosing in a 24-well plate.",
+                    "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "HepG2", "tissue": ""
+                  }
+                },
+                {
+                  "data_source": "Tox21",
+                  "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I",
+                  "experiment_details": {
+                    "assay_description": "NVS_NR_hER is a biochemical, single-readout assay that uses extracted gene-proteins from MCF7 in a cell-free assay. Measurements were taken 18 hours after chemical dosing in a 96-well plate.",
+                    "assay_format": "cell-free",
+                    "assay_format_type": "biochemical",
+                    "cell_short_name": "", "tissue": ""
+                  }
+                },
+                {
+                  "data_source": "Tox21",
+                  "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I",
+                  "experiment_details": {
+                    "assay_description": "ATG_TRANS is a cell-based, multiplexed-readout assay that uses HepG2, a human liver cell line, with measurements taken at 24 hours after chemical dosing in a 24-well plate.",
+                    "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "HepG2", "tissue": ""
+                  }
+                },
+                {
+                  "data_source": "Tox21",
+                  "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I",
+                  "experiment_details": {
+                    "assay_description": "OT_ER_ERaERa_0480  is a cell-based assay that uses HEK293T, a human kidney cell line, with measurements taken at 8 hours after chemical dosing in a 384-well plate.", "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "HEK293T", "tissue": ""}}, {"data_source": "Tox21", "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I", "experiment_details": {"assay_description": "OT_ERa_GFPERaERE_0480 is a cell-based, single-readout assay that uses HeLa, a human cervix cell line, with measurements taken at 8 hours after chemical dosing in a 384-well plate.", "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "HeLa", "tissue": ""}}, {"data_source": "Tox21", "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I", "experiment_details": {"assay_description": "TOX21_ERa_LUC_VM7_Agonist is a cell-based, single-readout assay that uses VM7, a human breast tissue cell line, with measurements taken at 48 hours after chemical dosing in a 1536-well plate.", "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "VM7", "tissue": ""}}, {"data_source": "Tox21", "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I", "experiment_details": {"assay_description": "TOX21_ERa_BLA_Antagonist is a cell-based, single-readout assay that uses HEK293T, a human kidney cell line, with measurements taken at 24 hours after chemical dosing in a 1536-well plate.", "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "HEK293T", "tissue": ""}}, {"data_source": "Tox21", "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I", "experiment_details": {"assay_description": "TOX21_ERa_LUC_VM7_Antagonist_Specificity is a cell-based, single-readout assay that uses VM7, a human breast tissue cell line, with measurements taken at 22 hours after chemical dosing in a 1536-well plate.", "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "VM7", "tissue": ""}}, {"data_source": "Tox21", "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I", "experiment_details": {"assay_description": "OT_ER_ERaERa_1440  is a cell-based assay that uses HEK293T, a human kidney cell line, with measurements taken at 24 hours after chemical dosing in a 384-well plate.", "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "HEK293T", "tissue": ""}}, {"data_source": "Tox21", "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I", "experiment_details": {"assay_description": "TOX21_ERa_BLA_Agonist is a cell-based, single-readout assay that uses HEK293T, a human kidney cell line, with measurements taken at 24 hours after chemical dosing in a 1536-well plate.", "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "HEK293T", "tissue": ""}}, {"data_source": "Tox21", "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I", "experiment_details": {"assay_description": "OT_ERa_GFPERaERE_0120 is a cell-based, single-readout assay that uses HeLa, a human cervix cell line, with measurements taken at 2 hours after chemical dosing in a 384-well plate.", "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "HeLa", "tissue": ""}}, {"data_source": "Tox21", "data_source_reference_link": "https://ntp.niehs.nih.gov/whatwestudy/tox21/phases/index.html#Phase-I", "experiment_details": {"assay_description": "TOX21_ERa_LUC_VM7_Antagonist2 is a cell-based, single-readout assay that uses VM7, a human breast tissue cell line, with measurements taken at 48 hours after chemical dosing in a 1536-well plate.", "assay_format": "cell line", "assay_format_type": "cell-based", "cell_short_name": "VM7", "tissue": ""
+          }
+        }
+      ]
+    }
+  }
+]

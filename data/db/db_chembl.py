@@ -154,7 +154,6 @@ def get_all_tids():
 
     return ids_list
 
-
 def get_all_molregnos():
     """ get all molregno from molecule_dictionary"""
     sql_results = _db_execute('select molregno from molecule_dictionary')
@@ -232,10 +231,10 @@ def activities_from_assay_ids(assay_ids):
     ids_list_str = _ids_to_str_list(assay_ids)
     sql_statement = "{} in ({})".format('select * from activities where assay_id', ids_list_str)
     sql_results = _db_execute_structured(sql_statement, 'activities')
-    logger.debug("results: {}".format(sql_results))
+    #logger.debug("results: {}".format(sql_results))
     json_results = _structured_to_json(sql_results)
 
-    logger.debug("json results: {}".format(json_results))
+    #logger.debug("json results: {}".format(json_results))
     return json_results
 
 def activities_from_molregnos(molregnos):
@@ -243,10 +242,10 @@ def activities_from_molregnos(molregnos):
     ids_list_str = _ids_to_str_list(molregnos)
     sql_statement = "{} in ({})".format('select * from activities where molregno', ids_list_str)
     sql_results = _db_execute_structured(sql_statement, 'activities')
-    logger.debug("results: {}".format(sql_results))
+    #logger.debug("results: {}".format(sql_results))
     json_results = _structured_to_json(sql_results)
 
-    logger.debug("json results: {}".format(json_results))
+    #logger.debug("json results: {}".format(json_results))
     return json_results
 
 def get_bioactivities_for_targets(chembl_ids):
