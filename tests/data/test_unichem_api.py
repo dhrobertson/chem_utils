@@ -55,7 +55,7 @@ def test_wrapper_functions():
     all_src_ids = unichem_api.get_all_src_ids()
     logger.debug("{} {} Results: {} Type: {}".format(_test_name_, "get_all_src_ids", type(all_src_ids), all_src_ids))
     assert type(all_src_ids) == type(list())
-    assert len(all_src_ids) == 48
+    assert len(all_src_ids) >= 48 # was 48 
 
     # test single src
     src_details = unichem_api.get_src_details(_test_src_id_)
@@ -116,7 +116,7 @@ def test_api_interface():
     results_all_ids = unichem_api.send_api_request("src_ids/")
     logger.debug("{} {} Results: {} Type: {}".format(_test_name_, "src_ids", type(results_all_ids), results_all_ids))
     assert type(results_all_ids) == type(list())
-    assert len(results_all_ids) == 48
+    assert len(results_all_ids) >= 48 # was 48
 
     # test valid single target API call for symbol
     src_1_details = unichem_api.send_api_request("sources/1")
