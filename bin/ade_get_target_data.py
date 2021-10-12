@@ -305,10 +305,7 @@ def get_ade_info(in_file, out_file):
             if True and gene_info['hgnc_symbol']:
                 ot_data = opentarget_json.get_target_info(gene_info['hgnc_symbol'])
                 logger.debug("\nOPENTARGET: ot_data: {} \n".format(ot_data))
-                if len(ot_data) > 1:
-                    logger.critical("OPENTARGET array of results > 1 for {} -- don't know how to handle".format(gene))
-                    break
-                if len(ot_data) == 1:
+                if len(ot_data) > 0:
                     logger.debug("\nOPENTARGET: data_map: {} results: {}\n".format(data_map['OPENTARGET'], ot_data))
                     for mapping in data_map['OPENTARGET']:
                         gene_info[mapping['target_field']] = extract_value(mapping['source_field'], ot_data[0])
