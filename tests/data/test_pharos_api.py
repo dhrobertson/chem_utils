@@ -34,12 +34,12 @@ test_query_results = {
             "novelty": 0.09160693,
             "diseaseCounts": [
                 {
-                    "name": "carcinoma",
-                    "value": 15219
+                    "name": "diabetes mellitus",
+                    "value": 3667
                 },
                 {
-                    "name": "diabetes mellitus",
-                    "value": 1616
+                    "name": "rheumatoid arthritis",
+                    "value": 1510
                 }
             ],
                 "ligandCounts": [
@@ -58,11 +58,12 @@ test_query_results = {
 
 _test_target_id_ = "GPR31"
 _test_target_ids_ = ["INPP5D", "SHIP1", "PAK1"]
+DEBUG = False
 
 def test_core_functions():
     """ test sending the core api request to Pharos GraphQL """
     results = pharos_api.send_api_request(test_query)
-    print(results)
+    #print(results)
     assert results == test_query_results
     results_error = pharos_api.send_api_request(test_query_error)
     assert results_error == {}
@@ -83,12 +84,15 @@ def test_wrapper_functions():
         more targets """
     # check that works for single target as string
     results = pharos_api.get_target_info(_test_target_id_)
-    logger.debug("Target: {} Results: {}".format(_test_target_id_, results))
+    if DEBUG:
+        logger.debug("Target: {} Results: {}".format(_test_target_id_, results))
+        logger.debug("Target: {} Test: {}".format(_test_target_id_, test_query_results))
     assert type(results) == type(list())
     assert len(results) == 1
     for key in test_query_results['data']['target']:
         assert key in results[0]
         assert results[0][key] == test_query_results['data']['target'][key]
+
     # check that works for the list
     results = pharos_api.get_target_info(_test_target_ids_)
     logger.debug("Target: {} Results: {}".format(_test_target_ids_, results))
