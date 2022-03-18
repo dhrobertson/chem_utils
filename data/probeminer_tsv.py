@@ -17,7 +17,7 @@ import csv
 import os
 import json
 import logging
-from utils import core_utils
+from . import core_utils
 
 # Global variables for connections so we don't create multiple
 _data_cache_ = {
@@ -66,15 +66,16 @@ def _read_tsv_file(read_from_cache=True):
         logger.critical("Exiting ... Issue with file {} from dir \"{}\" not existing".format(dir, file))
         exit()
     nrows = 0
+    logger.info("Reading probeminer data from {}".format(file))
     with open(full_path, newline='') as fo:
         reader = csv.DictReader(fo, delimiter='\t')
         for row in reader:
             uniprot = row['UNIPROT_ACCESSION']
-            print("uniprot: {} {}".format(uniprot, type(uniprot)))
+            #print("uniprot: {} {}".format(uniprot, type(uniprot)))
             if uniprot not in data['targets']:
                 data['targets'][uniprot] = list()
             cpd_id  = row['COMPOUND_ID']
-            print("cpd_id: {} {}".format(cpd_id, type(cpd_id)))
+            #print("cpd_id: {} {}".format(cpd_id, type(cpd_id)))
             if cpd_id not in data['targets']:
                 data['compounds'][cpd_id] = list()
             data['targets'][uniprot].append(row)

@@ -22,8 +22,8 @@ logger.level = logging.DEBUG
 # PAK2 UNIPROT_ACCESSION Q13177
 # BRD4 UNIPROT ACCESSION O60885
 _pak1_uniprot_ = 'Q13153'
-_pak2_uniprot_ = 'Q13153'
-_brd4_uniprot_ = 'BRD4'
+_pak2_uniprot_ = 'Q13177'
+_brd4_uniprot_ = 'O60885'
 
 
 def test_core_functions():
@@ -72,13 +72,14 @@ def test_wrapper_functions():
     assert type(results2) == type(list())
     assert len(results2) == 2
     assert len(results2[0]) == 254
-    assert len(results2[1]) == 254
+    assert len(results2[1]) == 53
     #print(results2)
 
     # list value -- returns list of lists of possible probes
     results3 = probeminer_tsv.get_target_info([_brd4_uniprot_]) # as list
     assert type(results3) == type(list())
-    assert len(results3) == 0 # not yet in probe miner
+    assert len(results3) == 1
+    assert len(results3[0]) == 1806
     #print(results3)
 
     # force fail for debugging
