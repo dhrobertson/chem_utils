@@ -17,6 +17,10 @@ These test should have close to full coverage across all the various objects, me
 ### Python Modules
   requests
 
+### ChEMBL webresource client
+
+  pip install chembl_webresource_client
+
 ### RDkit
 
 RDkit is the primary opensource toolkit to use for handling compounds and associated computations including creating images through the svg

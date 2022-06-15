@@ -39,7 +39,7 @@ def read_file(in_file, id_column):
     id_column_error = False
     with open(in_file) as file_ref:
 # TODO: make delimiter an option - chembl uses ;
-        csv_reader = csv.DictReader(file_ref, delimiter=';')
+        csv_reader = csv.DictReader(file_ref, delimiter=',')
         for row in csv_reader:
             if id_column in row:
                 cpds.append(row[id_column])

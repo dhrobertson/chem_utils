@@ -20,7 +20,7 @@ import chem_utils
 from chem_utils.data import hugo_api
 from chem_utils.data import pharos_api
 from chem_utils.data import pharos_api
-from chem_utils.data import chembl_api
+from chem_utils.data import chembl
 
 ignore = ['gene_symbol']
 
@@ -75,7 +75,7 @@ tgt_map = {
     'CHEMBL2276' : 'JNK1',
     'CHEMBL1957' : 'IGF1R',
     'CHEMBL5568' : 'ROS1',
-    'CHEMBL1974' : 'FLT3'  
+    'CHEMBL1974' : 'FLT3'
 }
 
 # cache results
@@ -106,7 +106,7 @@ def read_file(in_file):
         'data'   : dict()
     }
     if not os.path.isfile(in_file):
-        logger.critical("Unable to locate defined input file \"" + in_file +"\" for genes ... skipping")
+        logger.critical("Unable to locate defined input file \"" + in_file +"\" for compounds ... skipping")
         return (compounds, extra_data)
 
     # read in as csv
@@ -184,7 +184,7 @@ def get_cpd_info(cpd):
 
     #CHEMBL data
     logger.level = logging.ERROR
-    activities = chembl_api.get_bioactivities_for_molecules(cpd)
+    activities = chembl.get_bioactivities_for_molecules(cpd)
     logger.level = logging.INFO
     cpd_info['chembl_results_count'] = len(activities)
     actives = dict()

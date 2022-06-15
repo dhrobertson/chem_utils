@@ -11,7 +11,7 @@ import pprint
 import logging
 from pathlib import Path
 from data.chembl_old import compounds
-from utils import core_utils
+from data import core_utils
 
 _test_sdf_read_file_ = str(Path(__file__).parent / 'data/cpds_test_lg.txt')
 

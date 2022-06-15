@@ -13,7 +13,7 @@ from pathlib import Path
 import pprint
 import logging
 import json
-from utils import core_utils
+from data import core_utils
 from data.chembl_old import get_assay_results
 
 # test file definitions

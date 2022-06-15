@@ -13,8 +13,8 @@ import logging
 import pprint
 import json
 import chem_utils
-from chem_utils.data.chembl import get_assay_results
-from chem_utils.utils import core_utils
+from chem_utils.data import chembl
+from chem_utils.data import core_utils
 
 #TODO: add flag for verbose
 #TODO: add flag to switch between getting results from molecules vs targets
@@ -55,9 +55,9 @@ if args.m_id:
     id_type = "molecule"
 
 if id_type == "molecule":
-    assay_results = get_assay_results.by_molecules(id_list)
+    assay_results = chembl.get_bioactivities_for_molecules(id_list)
 else:
-    assay_results = get_assay_results.by_targets(id_list)
+    assay_results = chembl.get_bioactivities_for_targets(id_list)
 
 if not len(assay_results):
     logger.error("Stopping. Did not return any assay results for {} id(s) of type {}".format(len(id_list),id_type))

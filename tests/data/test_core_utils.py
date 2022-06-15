@@ -10,17 +10,17 @@ test the utility functions in the core_utils.py file
 from pathlib import Path
 import csv
 import json
-from utils import core_utils
+from data import core_utils
 
 # test file definitions
 _null_file_ = 'my_file.txt'
-_test_read_csv_file_ = str(Path(__file__).parent / 'data/table.csv')
-_test_read_json_file_ = str(Path(__file__).parent / 'data/table.json')
-_test_tmp_json_file_ = str(Path(__file__).parent / 'data/tmp/table.json')
-_test_read_item_file_ = str(Path(__file__).parent / 'data/items.txt')
-_test_content_file_ = str(Path(__file__).parent / 'data/tmp/content.txt')
-_test_content_assay_results_json_file_ = str(Path(__file__).parent / 'data/assay_results.json')
-_test_tmp_assay_results_file_ = str(Path(__file__).parent / 'data/tmp/assay_results.csv')
+_test_read_csv_file_ = str(Path(__file__).parent / 'test_data/table.csv')
+_test_read_json_file_ = str(Path(__file__).parent / 'test_data/table.json')
+_test_tmp_json_file_ = str(Path(__file__).parent / 'test_data/tmp/table.json')
+_test_read_item_file_ = str(Path(__file__).parent / 'test_data/items.txt')
+_test_content_file_ = str(Path(__file__).parent / 'test_data/tmp/content.txt')
+_test_content_assay_results_json_file_ = str(Path(__file__).parent / 'test_data/assay_results.json')
+_test_tmp_assay_results_file_ = str(Path(__file__).parent / 'test_data/tmp/assay_results.csv')
 
 _test_content_ = "This is my test content"
 
